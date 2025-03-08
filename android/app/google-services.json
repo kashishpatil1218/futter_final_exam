@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "485698947637",
+    "project_id": "flutter-final-exam-cb50a",
+    "storage_bucket": "flutter-final-exam-cb50a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485698947637:android:494c17583fb40b5fc03f7c",
+        "android_client_info": {
+          "package_name": "com.example.futter_final_exam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrPklxJ_fhDQc2faGLSxUhJnpZtUAHE1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
