@@ -130,5 +130,7 @@ class TaskProvider extends ChangeNotifier {
     super.dispose();
   }
 
+  void filter(){
 
+  }
 }

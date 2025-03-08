@@ -1,7 +1,5 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:futter_final_exam/core/task_modal.dart';
-
 import 'package:provider/provider.dart';
 
 import '../service/firestrore_service.dart';
@@ -26,23 +24,11 @@ class TodoHomePage extends StatelessWidget {
           // SYNC
           IconButton(
             onPressed: () async {
-              final result = await Connectivity().checkConnectivity();
-
-              if (result == ConnectivityResult.mobile ||
-                  result == ConnectivityResult.wifi) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Syncing with firebase...')),
-                );
-                await context.read<TaskProvider>().syncTask();
-                ScaffoldMessenger.of(context).clearSnackBars();
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('You are offline!!!'),
-                    duration: Duration(seconds: 2),
-                  ),
-                );
-              }
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Syncing with firebase...')),
+              );
+              await context.read<TaskProvider>().syncTask();
+              ScaffoldMessenger.of(context).clearSnackBars();
             },
             icon: const Icon(Icons.sync),
           ),
@@ -50,55 +36,20 @@ class TodoHomePage extends StatelessWidget {
           // BACKUP TO FIREBASE OPTION
           IconButton(
             onPressed: () async {
-              final result = await Connectivity().checkConnectivity();
-
-              if (result == ConnectivityResult.mobile ||
-                  result == ConnectivityResult.wifi) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Backing up to firebase...')),
-                );
-                await FireStoreServices.fbServices.backUpToFirebase();
-                ScaffoldMessenger.of(context).clearSnackBars();
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('You are offline!!!'),
-                    duration: Duration(seconds: 2),
-                  ),
-                );
-              }
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Backing up to firebase...')),
+              );
+              await FireStoreServices.fbServices.backUpToFirebase();
+              ScaffoldMessenger.of(context).clearSnackBars();
             },
             icon: const Icon(Icons.cloud_upload),
           ),
-
-          // Logout
-          // IconButton(
-          //   onPressed: () async {
-          //     final res = await AuthService.authService.signOutUser();
-          //     if (res) {
-          //       Navigator.pushReplacement(
-          //           context,
-          //           MaterialPageRoute(
-          //             builder: (context) => const SignIn(),
-          //           ));
-          //     }
-          //   },
-          //   icon: const Icon(Icons.logout),
-          // ),
         ],
       ),
 
       // BODY
       body: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(onPressed: () {}, child: Text('Medium')),
-              ElevatedButton(onPressed: () {}, child: Text('low')),
-              ElevatedButton(onPressed: () {}, child: Text('hight')),
-            ],
-          ),
           // ADD TASK BUTTON
           const AddTaskButton(),
 
@@ -140,3 +91,4 @@ class TodoHomePage extends StatelessWidget {
     );
   }
 }
+
